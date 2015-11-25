@@ -8,18 +8,23 @@ namespace CandleBridgeSteering
     class CandleBridgeSetting
     {
         public string Name { get; set; }
-        public string Code { get; set; }
+        public string OnCode { get; set; }
+        public string OffCode { get; set; }
 
-        public CandleBridgeSetting(string name, string code)
+        public CandleBridgeSetting(string name, string onCode, string offCode)
         {
             if (name == null)
                 throw new ArgumentNullException("name");
 
-            if (code == null)
-                throw new ArgumentNullException("code");
+            if (onCode == null)
+                throw new ArgumentNullException("onCode");
+
+            if (offCode == null)
+                throw new ArgumentNullException("offCode");
 
             Name = name;
-            Code = code;
+            OnCode = onCode;
+            OffCode = offCode;
         }
     }
 }

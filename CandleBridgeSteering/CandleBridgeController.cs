@@ -1,6 +1,7 @@
 ﻿using iCalendar;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace CandleBridgeSteering
@@ -33,10 +34,12 @@ namespace CandleBridgeSteering
                 if (ShouldTurnOnCandleBridge(candleBridgeSetting, Calendar))
                 {
                     Console.WriteLine("{0} on...", candleBridgeSetting.Name);
+                    Process.Start("/var/www/rfoutlet/codesend", candleBridgeSetting.OnCode);
                 }
                 else
                 {
                     Console.WriteLine("{0} off...", candleBridgeSetting.Name);
+                    Process.Start("/var/www/rfoutlet/codesend", candleBridgeSetting.OffCode);
                 }
             }
         }

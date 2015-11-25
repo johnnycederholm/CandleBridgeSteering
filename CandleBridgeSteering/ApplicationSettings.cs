@@ -22,15 +22,18 @@ namespace CandleBridgeSteering
             {
                 new CandleBridgeSetting(
                     ConfigurationManager.AppSettings["FirstCandleBridgeName"],
-                    ConfigurationManager.AppSettings["FirstCandleBridgeCode"]
+                    ConfigurationManager.AppSettings["FirstCandleBridgeOnCode"],
+                    ConfigurationManager.AppSettings["FirstCandleBridgeOffCode"]
                 ),
                 new CandleBridgeSetting(
                     ConfigurationManager.AppSettings["SecondCandleBridgeName"],
-                    ConfigurationManager.AppSettings["SecondCandleBridgeCode"]
+                    ConfigurationManager.AppSettings["SecondCandleBridgeOnCode"],
+                    ConfigurationManager.AppSettings["SecondCandleBridgeOffCode"]
                 ),
                 new CandleBridgeSetting(
                     ConfigurationManager.AppSettings["ThirdCandleBridgeName"],
-                    ConfigurationManager.AppSettings["ThirdCandleBridgeCode"]
+                    ConfigurationManager.AppSettings["ThirdCandleBridgeOnCode"],
+                    ConfigurationManager.AppSettings["ThirdCandleBridgeOffCode"]
                 )
             };
 
