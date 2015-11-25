@@ -14,7 +14,7 @@ namespace CandleBridgeSteering
         {
             if (string.IsNullOrWhiteSpace(calendarUrl))
             {
-                throw new ArgumentException($"{nameof(calendarUrl)} is null or empty.");
+                throw new ArgumentException("calendarUrl is null or empty.");
             }
 
             CalendarUrl = calendarUrl;

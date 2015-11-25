@@ -32,11 +32,11 @@ namespace CandleBridgeSteering
             {
                 if (ShouldTurnOnCandleBridge(candleBridgeSetting, Calendar))
                 {
-                    Console.WriteLine($"{candleBridgeSetting.Name} on...");
+                    Console.WriteLine("{0} on...", candleBridgeSetting.Name);
                 }
                 else
                 {
-                    Console.WriteLine($"{candleBridgeSetting.Name} off...");
+                    Console.WriteLine("{0} off...", candleBridgeSetting.Name);
                 }
             }
         }

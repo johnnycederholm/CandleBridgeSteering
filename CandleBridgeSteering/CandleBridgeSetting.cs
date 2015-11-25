@@ -13,10 +13,10 @@ namespace CandleBridgeSteering
         public CandleBridgeSetting(string name, string code)
         {
             if (name == null)
-                throw new ArgumentNullException(nameof(name));
+                throw new ArgumentNullException("name");
 
             if (code == null)
-                throw new ArgumentNullException(nameof(code));
+                throw new ArgumentNullException("code");
 
             Name = name;
             Code = code;
