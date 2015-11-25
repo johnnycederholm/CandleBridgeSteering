@@ -14,12 +14,12 @@ namespace CandleBridgeSteering
         {
             if (calendar == null)
             {
-                throw new ArgumentNullException(nameof(calendar));
+                throw new ArgumentNullException("calendar");
             }
 
             if (candleBridgeSettings == null)
             {
-                throw new ArgumentNullException(nameof(candleBridgeSettings));
+                throw new ArgumentNullException("candleBridgeSettings");
             }
 
             Calendar = calendar;
