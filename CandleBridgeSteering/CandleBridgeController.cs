@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 
 namespace CandleBridgeSteering
 {
@@ -41,6 +42,8 @@ namespace CandleBridgeSteering
                     Console.WriteLine("{0} off...", candleBridgeSetting.Name);
                     Process.Start("/var/www/rfoutlet/codesend", candleBridgeSetting.OffCode);
                 }
+
+                Thread.Sleep(500);
             }
         }
 
