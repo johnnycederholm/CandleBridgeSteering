@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using iCalendar;
 
 namespace CandleBridgeSteering
@@ -16,8 +15,6 @@ namespace CandleBridgeSteering
 
             CandleBridgeController candleBridgeController = new CandleBridgeController(calendar, settings);
             candleBridgeController.UpdateStates();
-
-            Console.ReadLine();
         }
     }
 }
