@@ -14,7 +14,7 @@ namespace CandleBridgeSteering
             Task<Calendar> calendarTask = client.GetCalendar();
             Calendar calendar = calendarTask.Result;
 
-            CandleBridgeController candleBridgeController = new CandleBridgeController(calendar, settings.CandleBridgeSettings);
+            CandleBridgeController candleBridgeController = new CandleBridgeController(calendar, settings);
             candleBridgeController.UpdateStates();
 
             Console.ReadLine();

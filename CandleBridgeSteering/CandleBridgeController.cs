@@ -1,6 +1,5 @@
 ﻿using iCalendar;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
@@ -10,40 +9,38 @@ namespace CandleBridgeSteering
     class CandleBridgeController
     {
         public Calendar Calendar { get; private set; }
-        public IEnumerable<CandleBridgeSetting> CandleBridgeSettings { get; private set; }
+        public ApplicationSettings Settings { get; private set; }
 
-        public CandleBridgeController(Calendar calendar, IEnumerable<CandleBridgeSetting> candleBridgeSettings)
+        public CandleBridgeController(Calendar calendar, ApplicationSettings settings)
         {
             if (calendar == null)
             {
                 throw new ArgumentNullException("calendar");
             }
 
-            if (candleBridgeSettings == null)
+            if (settings == null)
             {
-                throw new ArgumentNullException("candleBridgeSettings");
+                throw new ArgumentNullException("settings");
             }
 
             Calendar = calendar;
-            CandleBridgeSettings = candleBridgeSettings;
+            Settings = settings;
         }
 
         public void UpdateStates()
         {
-            foreach (CandleBridgeSetting candleBridgeSetting in CandleBridgeSettings)
+            foreach (CandleBridgeSetting candleBridgeSetting in Settings.CandleBridgeSettings)
             {
                 if (ShouldTurnOnCandleBridge(candleBridgeSetting, Calendar))
                 {
-                    Console.WriteLine("{0} on...", candleBridgeSetting.Name);
-                    Process.Start("/var/www/rfoutlet/codesend", candleBridgeSetting.OnCode);
+                    Process.Start(Settings.CodesendLocation, candleBridgeSetting.OnCode);
                 }
                 else
                 {
-                    Console.WriteLine("{0} off...", candleBridgeSetting.Name);
-                    Process.Start("/var/www/rfoutlet/codesend", candleBridgeSetting.OffCode);
+                    Process.Start(Settings.CodesendLocation, candleBridgeSetting.OffCode);
                 }
 
-                Thread.Sleep(500);
+                Thread.Sleep(Settings.SleepTimeBetweenCandleBridge);
             }
         }
 
