@@ -50,7 +50,10 @@
   <ItemGroup>
     <Compile Include="ApplicationSettings.cs" />
     <Compile Include="CandleBridgeController.cs" />
-    <Compile Include="CandleBridgeSetting.cs" />
+    <Compile Include="CandleBridge.cs" />
+    <Compile Include="Configuration\CandleBridgeSection.cs" />
+    <Compile Include="Configuration\CandleBridgeCollection.cs" />
+    <Compile Include="Configuration\CandleBridgeElement.cs" />
     <Compile Include="iCalendarClient.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

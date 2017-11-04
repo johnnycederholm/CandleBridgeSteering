@@ -1,17 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using CandleBridgeSteering.Configuration;
+using System.Collections.Generic;
 using System.Configuration;
 
 namespace CandleBridgeSteering
 {
     class ApplicationSettings
     {
-        public string CalendarUrl { get; set; }
-        public string CodesendLocation { get; set; }
-        public int SleepTimeBetweenCandleBridge { get; set; }
-        public IEnumerable<CandleBridgeSetting> CandleBridgeSettings { get; set; }
+        public string CalendarUrl { get;  }
+        public string CodesendLocation { get; }
+        public int SleepTimeBetweenCandleBridge { get; }
+        public IEnumerable<CandleBridge> CandleBridges { get; }
 
-        private ApplicationSettings()
+        private ApplicationSettings(string calendarUrl, IEnumerable<CandleBridge> candleBridges, string codesendLocation, int sleepTimeBetweenCandleBridge)
         {
+            CalendarUrl = calendarUrl;
+            CandleBridges = candleBridges;
+            CodesendLocation = codesendLocation;
+            SleepTimeBetweenCandleBridge = sleepTimeBetweenCandleBridge;
         }
 
         /// <summary>
@@ -20,32 +25,24 @@ namespace CandleBridgeSteering
         /// <returns></returns>
         public static ApplicationSettings GetInstance()
         {
-            List<CandleBridgeSetting> candleBridgeSettings = new List<CandleBridgeSetting>
-            {
-                new CandleBridgeSetting(
-                    ConfigurationManager.AppSettings["FirstCandleBridgeName"],
-                    ConfigurationManager.AppSettings["FirstCandleBridgeOnCode"],
-                    ConfigurationManager.AppSettings["FirstCandleBridgeOffCode"]
-                ),
-                new CandleBridgeSetting(
-                    ConfigurationManager.AppSettings["SecondCandleBridgeName"],
-                    ConfigurationManager.AppSettings["SecondCandleBridgeOnCode"],
-                    ConfigurationManager.AppSettings["SecondCandleBridgeOffCode"]
-                ),
-                new CandleBridgeSetting(
-                    ConfigurationManager.AppSettings["ThirdCandleBridgeName"],
-                    ConfigurationManager.AppSettings["ThirdCandleBridgeOnCode"],
-                    ConfigurationManager.AppSettings["ThirdCandleBridgeOffCode"]
-                )
-            };
+            List<CandleBridge> candleBridgeSettings = new List<CandleBridge>();
+            CandleBridgeSection section = (CandleBridgeSection)ConfigurationManager.GetSection("candleBridgeSettings");
 
-            return new ApplicationSettings
+            foreach (CandleBridgeElement candleBridge in section.CandleBridges)
             {
-                CalendarUrl = ConfigurationManager.AppSettings["CalendarUrl"],
-                CandleBridgeSettings = candleBridgeSettings,
-                CodesendLocation = ConfigurationManager.AppSettings["CodesendLocation"],
-                SleepTimeBetweenCandleBridge = GetSleepTime()
-            };
+                candleBridgeSettings.Add(new CandleBridge(
+                    candleBridge.Name,
+                    candleBridge.OnCode,
+                    candleBridge.OffCode
+                ));
+            }
+
+            return new ApplicationSettings(
+                ConfigurationManager.AppSettings["CalendarUrl"],
+                candleBridgeSettings,
+                ConfigurationManager.AppSettings["CodesendLocation"],
+                GetSleepTime()
+            );
         }
 
         /// <summary>

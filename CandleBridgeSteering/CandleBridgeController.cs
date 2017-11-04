@@ -29,7 +29,7 @@ namespace CandleBridgeSteering
 
         public void UpdateStates()
         {
-            foreach (CandleBridgeSetting candleBridgeSetting in Settings.CandleBridgeSettings)
+            foreach (CandleBridge candleBridgeSetting in Settings.CandleBridges)
             {
                 if (ShouldTurnOnCandleBridge(candleBridgeSetting, Calendar))
                 {
@@ -44,7 +44,7 @@ namespace CandleBridgeSteering
             }
         }
 
-        private bool ShouldTurnOnCandleBridge(CandleBridgeSetting candleBridge, Calendar calendar)
+        private bool ShouldTurnOnCandleBridge(CandleBridge candleBridge, Calendar calendar)
         {
             return calendar.Events.Any(calendarEvent => calendarEvent.Summary.Equals(candleBridge.Name) && calendarEvent.Ongoing);
         }

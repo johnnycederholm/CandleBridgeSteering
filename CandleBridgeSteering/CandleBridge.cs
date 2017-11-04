@@ -5,13 +5,13 @@ namespace CandleBridgeSteering
     /// <summary>
     /// Settings for a candle bridge.
     /// </summary>
-    class CandleBridgeSetting
+    class CandleBridge
     {
         public string Name { get; set; }
         public string OnCode { get; set; }
         public string OffCode { get; set; }
 
-        public CandleBridgeSetting(string name, string onCode, string offCode)
+        public CandleBridge(string name, string onCode, string offCode)
         {
             if (name == null)
                 throw new ArgumentNullException("name");
